@@ -2,7 +2,6 @@ Behat-Laravel
 ============
 
 Behat-Laravel is a solution test your application BDD methodology. This package create the following folder structure:
---------------------------
 
 Setup:
 ------
