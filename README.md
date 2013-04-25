@@ -51,6 +51,15 @@ Structure
 
 http://docs.behat.org/
 
+
+Adding Contexts
+---------------
+
+When you create a ```context```at folder ```tests\acceptance\contexts``` this files
+will be included at ```FeatureContext``` preventing the specification of files
+that will used to tests.
+
+
 Running tests
 -------------
 
@@ -59,7 +68,6 @@ To running test, you can use the follow command:
 ```
 $ php artisan behat:run
 ```
-
 
 License
 -------
