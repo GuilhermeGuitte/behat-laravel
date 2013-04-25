@@ -59,7 +59,7 @@ class FileBuilder
         $behatConfig = file_get_contents(dirname(__FILE__) . "/templates/behat_config.txt");
         $behatConfig = str_replace("{testPath}", $this->testPath, $behatConfig);
 
-        $this->createFile('app/../_behat.yml', $behatConfig);
+        $this->createFile('app/../behat.yml', $behatConfig);
     }
 
     /**
