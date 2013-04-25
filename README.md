@@ -55,3 +55,7 @@ To running test, you can use the follow command:
 $ php artisan behat:run
 ```
 
+
+License
+-------
+Behat-Laravel is free software distributed under the terms of the MIT license
