@@ -45,6 +45,36 @@ class BehatLaravelCommand extends Command {
      */
     public function fire()
     {
+        $testPath = $this->option('test_path');
+
+        $this->line('');
+
+        $this->comment(
+            "Will be create the following folders/files at $testPath: \n" .
+            " $testPath/acceptance/features \n" .
+            " $testPath/acceptance/contexts \n" .
+            "See the the doc to more information"
+        );
+
+        $file_builder = new FileBuilder($testPath);
+
+        $file_builder->makeStructure($this->option('force'));
+
+        $this->line('');
     }
 
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        $app = app();
+
+        return array(
+            array('test_path', null, InputOption::VALUE_OPTIONAL, 'The test path.'),
+            array('force', null, InputOption::VALUE_OPTIONAL, 'Force the creation of file/folders', false)
+        );
+    }
 }
