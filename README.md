@@ -27,7 +27,7 @@ In your ```config/app.php``` add ```'GuilhermeGuitte\BehatLaravel\BehatLaravelSe
     'Illuminate\Foundation\Providers\ArtisanServiceProvider',
     'Illuminate\Auth\AuthServiceProvider',
     ...
-    'GuilhermeGuitte\BehatLaravel\ConfideServiceProvider',
+    'GuilhermeGuitte\BehatLaravel\BehatLaravelServiceProvider',
 
 ),
 ```
@@ -45,6 +45,11 @@ You can pass the test path if you not using the ```app/tests``` which folder`s t
 ```
 $ php artisan behat:install --test_path==your/test/path
 ```
+
+Structure
+---------
+
+http://docs.behat.org/
 
 Running tests
 -------------
