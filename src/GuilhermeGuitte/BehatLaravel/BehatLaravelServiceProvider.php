@@ -24,6 +24,13 @@ class BehatLaravelServiceProvider extends ServiceProvider {
         });
 
         $this->commands('command.behat.install');
+
+        $this->app['command.behat.run'] = $this->app->share(function($app)
+        {
+            return new RunBehatLaravelCommand();
+        });
+
+        $this->commands('command.behat.run');
     }
 
 }
