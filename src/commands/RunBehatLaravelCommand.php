@@ -53,6 +53,6 @@ class RunBehatLaravelCommand extends Command {
 
         // Running with output color
         $app = new \Behat\Behat\Console\BehatApplication('DEV');
-        $app->run(new ArgvInput(['app/tests/acceptance']));
+        $app->run(new \Symfony\Component\Console\Input\ArgvInput(['app/tests/acceptance']));
     }
 }
