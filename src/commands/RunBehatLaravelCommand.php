@@ -51,6 +51,8 @@ class RunBehatLaravelCommand extends Command {
 
         $this->comment("Running acceptance tests... \n\n");
 
-        echo(shell_exec(app('path') . "/../vendor/bin/behat 'app/tests/acceptance'"));
+        // Running with output color
+        $app = new \Behat\Behat\Console\BehatApplication('DEV');
+        $app->run(new ArgvInput(['app/tests/acceptance']));
     }
 }
