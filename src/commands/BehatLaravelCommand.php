@@ -47,7 +47,7 @@ class BehatLaravelCommand extends Command {
     {
         $testPath = $this->option('test_path');
 
-        if (isset($testPath)) {
+        if (! isset($testPath)) {
             $testPath = 'app/tests';
         }
 
