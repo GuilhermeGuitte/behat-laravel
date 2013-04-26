@@ -20,6 +20,10 @@ class FileBuilder
      */
     public function makeStructure($force)
     {
+        if ($force) {
+            $this->cleanFolders();
+        }
+
         $this->createFolders();
         $this->createBehatConfig();
         $this->createTemplatesFiles();
@@ -140,5 +144,15 @@ class FileBuilder
                 fclose($fs);
             }
         }
+    }
+
+    /**
+     * Clean the folder structure
+     *
+     * @return null
+     */
+    protected function cleanFolders()
+    {
+        unlink($this->getAcceptancePath());
     }
 }
