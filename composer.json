@@ -13,7 +13,8 @@
         "php": ">=5.3.0",
         "behat/behat": "2.4.*@dev",
         "illuminate/support": "4.0.x",
-        "alexandresalome/php-selenium": "1.0.1"
+        "alexandresalome/php-selenium": "1.0.1",
+        "zizaco/testcases-laravel": "dev-master"
     },
     "autoload": {
         "classmap": [
