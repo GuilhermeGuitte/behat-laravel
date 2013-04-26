@@ -32,6 +32,10 @@ In your ```config/app.php``` add ```'GuilhermeGuitte\BehatLaravel\BehatLaravelSe
 ),
 ```
 
+Install ```selenium```.
+
+http://docs.seleniumhq.org/download/
+
 Commands
 ----------------
 Now generate the Behat's structure folder using the follow artisan's command:
