@@ -1,12 +1,22 @@
-Behat-Laravel
-============
+# Behat-Laravel
+
+[![ProjectStatus](http://stillmaintained.com/GuilhermeGuitte/behat-laravel.png)](http://stillmaintained.com/GuilhermeGuitte/behat-laravel)
 
 Behat-Laravel is a solution test your application BDD methodology. This package create the following folder structure:
 
-Setup:
-------
+## Features:
 
-In the ```require``` key of ```composer.json``` file add the following
+*Current:*
+
+* Create the folder structure to for receiving the Acceptance tests.
+* Run the acceptance test.
+* Ingration with [Zizaco/TestCases-Laravel](https://github.com/Zizaco/testcases-laravel), that provide the useful methods test your application.
+
+## Quick start:
+
+### Required setup
+
+In the ```require``` key of ```composer.json``` file add the following:
 
 ```
 "guilhermeguitte/behat-laravel": "dev-master"
@@ -63,6 +73,16 @@ When you create a ```context```at folder ```tests\acceptance\contexts``` this fi
 will be included at ```FeatureContext``` preventing the specification of files
 that will used to tests.
 
+```
+$ php artisan behat:feature --name=NameOfFeature
+```
+
+Will create:
+
+```
+    app\tests\acceptance\contexts\NameOfFeatureContext.php
+    app\tests\acceptance\features\name_of_feature\name_of_feature.feature
+```
 
 Running tests
 -------------
