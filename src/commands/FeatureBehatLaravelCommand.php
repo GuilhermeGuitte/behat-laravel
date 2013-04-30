@@ -4,21 +4,21 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class BehatLaravelCommand extends Command {
+class FeatureBehatLaravelCommand extends Command {
 
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'behat:install';
+    protected $name = 'behat:feature';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = "Create Behat's folder structure";
+    protected $description = 'Creates an feature and contexts';
 
     /**
      * Illuminate application instance.
@@ -45,21 +45,28 @@ class BehatLaravelCommand extends Command {
      */
     public function fire()
     {
+        $feature = $this->option('name');
+
         passthru('clear');
 
-        $this->question("Welcome to Laravel-Behat \n");
+        $file_builder = new FeatureBuilder($feature);
 
-        $this->comment("The following directories will be created: \n");
-
-        $this->info(" app/tests/acceptance/features \n");
-        $this->info(" app/tests/acceptance/contexts \n");
-
-        $this->comment("See the documentation for more information.");
-
-        $file_builder = new FileBuilder();
-
-        $file_builder->makeStructure();
+        $file_builder->makeFeature();
 
         $this->line('');
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        $app = app();
+
+        return array(
+            array('name', null, InputArgument::REQUIRED, "Feature's name")
+        );
     }
 }
