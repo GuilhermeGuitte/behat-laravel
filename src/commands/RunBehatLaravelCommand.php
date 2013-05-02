@@ -53,6 +53,20 @@ class RunBehatLaravelCommand extends Command {
 
         // Running with output color
         $app = new \Behat\Behat\Console\BehatApplication('DEV');
-        $app->run(new \Symfony\Component\Console\Input\ArgvInput(['app/tests/acceptance']));
+        $app->run(new \Symfony\Component\Console\Input\ArgvInput(
+            ['','app/tests/acceptance/features/'.$this->input->getArgument('feature')]
+        ));
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return array(
+            array('feature', InputArgument::OPTIONAL, 'Runs tests in the specified folder or file only.'),
+        );
     }
 }

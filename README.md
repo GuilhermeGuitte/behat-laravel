@@ -2,7 +2,7 @@
 
 [![ProjectStatus](http://stillmaintained.com/GuilhermeGuitte/behat-laravel.png)](http://stillmaintained.com/GuilhermeGuitte/behat-laravel)
 
-Behat-Laravel is a solution test your application BDD methodology. This package create the following folder structure:
+Behat-Laravel is a solution test your application using the BDD methodology.
 
 ## Features:
 
@@ -87,10 +87,18 @@ Will create:
 Running tests
 -------------
 
-To running test, you can use the follow command:
+To run all test, you can use the follow command:
 
 ```
 $ php artisan behat:run
+```
+
+To run tests for specific features, you can specify the name of the folder or the .feature file:
+
+```
+$ php artisan behat:run name_of_feature
+$ php artisan behat:run name_of_feature/name_of_feature.feature
+$ php artisan behat:run name_of_feature/separated_scenarios.feature
 ```
 
 License
