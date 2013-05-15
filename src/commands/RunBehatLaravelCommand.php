@@ -51,10 +51,23 @@ class RunBehatLaravelCommand extends Command {
 
         $this->comment("Running acceptance tests... \n\n");
 
+        $input = array();
+        $input[] = '';
+        if ( ($format = $this->input->getOption('format') ) ) {
+            $input[] = '--format='.$format;
+        }
+        if ( ($tags = $this->input->getOption('tags') ) ) {
+            $input[] = '--tags='.$tags;
+        }
+        if ( ($snippets = $this->input->getOption('no-snippets') ) ) {
+            $input[] = '--no-snippets';
+        }
+        $input[] = 'app/tests/acceptance/features/'.$this->input->getArgument('feature');
+
         // Running with output color
         $app = new \Behat\Behat\Console\BehatApplication('DEV');
         $app->run(new \Symfony\Component\Console\Input\ArgvInput(
-            ['','app/tests/acceptance/features/'.$this->input->getArgument('feature')]
+            $input
         ));
     }
 
@@ -67,6 +80,16 @@ class RunBehatLaravelCommand extends Command {
     {
         return array(
             array('feature', InputArgument::OPTIONAL, 'Runs tests in the specified folder or file only.'),
+        );
+    }
+
+    protected function getOptions()
+    {
+        return array(
+            array('format', 'f', InputOption::VALUE_REQUIRED, 'Choose a formatter from <caption>pretty</caption> (default), progress, html, junit, failed, snippets.'),
+            array('tags', NULL, InputOption::VALUE_REQUIRED, 'Only execute the features or scenarios with tags matching the tag filter expression.'),
+            array('no-snippets', NULL, InputOption::VALUE_NONE, 'Don\'t print snippets for unmatched steps'),
+            array('profile', 'p', InputOption::VALUE_REQUIRED, 'Specify a profile from behat.yml'),
         );
     }
 }
