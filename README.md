@@ -101,6 +101,23 @@ $ php artisan behat:run name_of_feature/name_of_feature.feature
 $ php artisan behat:run name_of_feature/separated_scenarios.feature
 ```
 
+Laravel behat currently supports the following command line options from behat:
+
+```
+ --format (-f)        How to format features. pretty is default.
+                      Default formatters are:
+                      - pretty: Prints the feature as is.
+                      - progress: Prints one character per step.
+                      - html: Generates a nice looking HTML report.
+                      - junit: Generates a report similar to Ant+JUnit.
+                      - failed: Prints list of failed scenarios.
+                      - snippets: Prints only snippets for undefined steps.
+
+ --no-snippets        Do not print out snippets
+ --profile (-p)       Specify config profile to use.
+```
+
+
 License
 -------
 Behat-Laravel is free software distributed under the terms of the MIT license
