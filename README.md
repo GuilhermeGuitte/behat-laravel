@@ -60,6 +60,20 @@ You can pass the test path if you not using the ```app/tests``` which folder`s t
 $ php artisan behat:install --test_path==your/test/path
 ```
 
+Generating Documentation
+-----------------------
+You can create a document in html just run:
+
+```
+$ php artisan behat:html # will create a file at application's root
+```
+
+or
+
+```
+$ php artisan behat:html --out path/you/need/doc.html # will create a file specified path
+```
+
 Structure
 ---------
 

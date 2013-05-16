@@ -53,15 +53,15 @@ class RunBehatLaravelCommand extends Command {
 
         $input = array();
         $input[] = '';
-        if ( ($format = $this->input->getOption('format') ) ) {
-            $input[] = '--format='.$format;
+
+        $options = array('format', 'no-snippets','tags', 'out');
+
+        foreach ($options as $option) {
+            if ( ($format = $this->input->getOption($option) ) ) {
+                $input[] = "--$option=".$format;
+            }
         }
-        if ( ($tags = $this->input->getOption('tags') ) ) {
-            $input[] = '--tags='.$tags;
-        }
-        if ( ($snippets = $this->input->getOption('no-snippets') ) ) {
-            $input[] = '--no-snippets';
-        }
+
         $input[] = 'app/tests/acceptance/features/'.$this->input->getArgument('feature');
 
         // Running with output color
@@ -90,6 +90,7 @@ class RunBehatLaravelCommand extends Command {
             array('tags', NULL, InputOption::VALUE_REQUIRED, 'Only execute the features or scenarios with tags matching the tag filter expression.'),
             array('no-snippets', NULL, InputOption::VALUE_NONE, 'Don\'t print snippets for unmatched steps'),
             array('profile', 'p', InputOption::VALUE_REQUIRED, 'Specify a profile from behat.yml'),
+            array('out', 'o', InputOption::VALUE_REQUIRED, 'Choose a formatter from <caption>pretty</caption> (default), progress, html, junit, failed, snippets.'),
         );
     }
 }

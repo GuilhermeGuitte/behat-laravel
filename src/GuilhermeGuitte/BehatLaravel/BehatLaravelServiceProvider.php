@@ -38,6 +38,13 @@ class BehatLaravelServiceProvider extends ServiceProvider {
         });
 
         $this->commands('command.behat.feature');
+
+        $this->app['command.behat.generate_doc'] = $this->app->share(function($app)
+        {
+            return new DocumentationCommand();
+        });
+
+        $this->commands('command.behat.generate_doc');
     }
 
 }
