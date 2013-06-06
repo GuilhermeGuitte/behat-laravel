@@ -47,13 +47,24 @@ class FeatureBehatLaravelCommand extends Command {
     {
         $feature = $this->option('name');
 
-        passthru('clear');
+        $message = "The feature $feature will be created".
+        " in app/tests/acceptance/features/$feature directory";
 
-        $file_builder = new FeatureBuilder($feature);
-
-        $file_builder->makeFeature();
-
+        $this->comment( $message );
         $this->line('');
+
+        if ( $this->confirm("Proceed with the feature creation? [Yes|no]") )
+        {
+
+            $this->line('');
+            $this->info( "Creating feature..." );
+
+            $file_builder = new FeatureBuilder($feature);
+            $file_builder->makeFeature();
+
+            $this->info( "Feature successfully created!" );
+            $this->line('');
+        }
     }
 
     /**
