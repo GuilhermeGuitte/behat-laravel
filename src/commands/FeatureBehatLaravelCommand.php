@@ -77,7 +77,7 @@ class FeatureBehatLaravelCommand extends Command {
         $app = app();
 
         return array(
-            array('name', null, InputArgument::REQUIRED, "Feature's name")
+            array('name', null, InputOption::VALUE_REQUIRED, "Feature's name")
         );
     }
 }
