@@ -25,12 +25,12 @@ class FileBuilder extends Builder
      */
     protected function createFolders()
     {
-        $paths = [
+        $paths = array(
             $this->testPath,
             $this->getAcceptancePath(),
             $this->getContextPath(),
             $this->getFeaturePath()
-        ];
+        );
 
         foreach ($paths as $path) {
             $this->createFolder($path);
@@ -58,10 +58,10 @@ class FileBuilder extends Builder
      */
     protected function createTemplatesFiles()
     {
-        $paths = [
+        $paths = array(
             'base' => $this->getContextPath() . '/BaseContext.php',
             'feature' => $this->getContextPath() . '/FeatureContext.php'
-        ];
+        );
 
         foreach ($paths as $name => $path) {
             $this->createFile($path, $this->getTemplate($name));
