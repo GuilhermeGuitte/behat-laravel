@@ -14,7 +14,8 @@
         "behat/behat": "2.5.x-dev",
         "illuminate/support": "*",
         "alexandresalome/php-selenium": "1.0.1",
-        "zizaco/testcases-laravel": "*"
+        "zizaco/testcases-laravel": "*",
+        "phpunit/phpunit": "4.0.*@dev"
     },
     "autoload": {
         "classmap": [
