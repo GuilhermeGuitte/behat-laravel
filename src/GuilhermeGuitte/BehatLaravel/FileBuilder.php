@@ -8,8 +8,11 @@ class FileBuilder extends Builder
      * @param  boolean $force
      * @return null
      */
-    public function makeStructure()
+    public function makeStructure($options = null)
     {
+        if ($options['test_path']) {
+            $this->testPath = $options['test_path'];
+        }
         $this->createFolders();
         $this->createBehatConfig();
         $this->createTemplatesFiles();

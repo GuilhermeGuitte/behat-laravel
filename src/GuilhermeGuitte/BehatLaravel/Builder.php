@@ -11,7 +11,7 @@ class Builder
      */
     protected function getContextPath()
     {
-        return $this->testPath . "/acceptance/contexts";
+        return $this->testPath.'/acceptance/contexts';
     }
 
 
@@ -22,7 +22,7 @@ class Builder
      */
     protected function getFeaturePath()
     {
-        return $this->testPath . "/acceptance/features";
+        return $this->testPath.'/acceptance/features';
     }
 
     /**
@@ -32,7 +32,7 @@ class Builder
      */
     protected function getAcceptancePath()
     {
-        return $this->testPath . "/acceptance";
+        return $this->testPath.'/acceptance';
     }
 
     /**
