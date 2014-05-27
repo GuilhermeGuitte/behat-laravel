@@ -62,8 +62,8 @@ class BehatLaravelCommand extends Command {
         $this->comment("The following directories will be created: \n");
 
         if(!empty($input) && isset($input['test_path'])){
-        $this->info($input['test_path']." /features \n");
-        $this->info($input['test_path']." /contexts \n");
+            $this->info($input['test_path']." /features \n");
+            $this->info($input['test_path']." /contexts \n");
         }else{
             $this->info(" app/tests/acceptance/features \n");
             $this->info(" app/tests/acceptance/contexts \n");
