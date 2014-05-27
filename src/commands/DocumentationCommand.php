@@ -72,6 +72,7 @@ class DocumentationCommand extends Command {
         $input[] = realpath($profile_config['paths']['features'].'/../');
         $input[] = '--format=html';
         $input[] = '--out=' . $path;
+        $input[] = '--profile=' . $profile;
 
         $this->comment("Creating doc...");
 
