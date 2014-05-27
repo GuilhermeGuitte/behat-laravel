@@ -76,7 +76,7 @@ class FeatureBehatLaravelCommand extends Command {
             $this->info( "Creating feature..." );
 
             $file_builder = new FeatureBuilder($feature);
-            $file_builder->makeFeature($profile_config['paths']['features']);
+            $file_builder->makeFeature($profile_config['paths']);
 
             $this->info( "Feature successfully created!" );
             $this->line('');
