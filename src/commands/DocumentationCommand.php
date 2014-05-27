@@ -66,7 +66,8 @@ class DocumentationCommand extends Command {
         if(!empty($profile)){
             $profile_config = $this->loadConfig($profile);
         }else{
-            $profile_config = $this->loadConfig('default');
+            $profile = 'default';
+            $profile_config = $this->loadConfig($profile);
         }
         
         $input[] = $profile_config['paths']['features'];
