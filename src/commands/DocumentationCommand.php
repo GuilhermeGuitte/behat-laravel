@@ -61,8 +61,15 @@ class DocumentationCommand extends Command {
         if($this->input->getOption('out')) {
             $path = $this->input->getOption('out');
         }
-
-        $input[] = 'app/tests/acceptance';
+        
+        $profile = $this->option('profile');
+        if(!empty($profile)){
+            $profile_config = $this->loadConfig($profile);
+        }else{
+            $profile_config = $this->loadConfig('default');
+        }
+        
+        $input[] = $profile_config['paths']['features'];
         $input[] = '--format=html';
         $input[] = '--out=' . $path;
 
@@ -78,6 +85,21 @@ class DocumentationCommand extends Command {
     {
         return array(
             array('out', 'o', InputOption::VALUE_OPTIONAL, 'Choose where file path should be created.'),
+            array('profile', 'p', InputOption::VALUE_REQUIRED, 'Specify a profile from behat.yml'),
         );
+    }
+    
+    /**
+     * Load the profile specific config
+     *
+     * @param string $profile
+     * @return array|NULL
+     */
+    protected function loadConfig($profile){
+    
+        if(!empty($this->config)){
+            return (isset($this->config[$profile]))? $this->config[$profile] : null;
+        }
+        return null;
     }
 }
