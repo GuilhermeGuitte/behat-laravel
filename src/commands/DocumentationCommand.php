@@ -69,7 +69,7 @@ class DocumentationCommand extends Command {
             $profile_config = $this->loadConfig('default');
         }
         
-        $input[] = $profile_config['paths']['features'];
+        $input[] = realpath($profile_config['paths']['features'].'/../');
         $input[] = '--format=html';
         $input[] = '--out=' . $path;
 

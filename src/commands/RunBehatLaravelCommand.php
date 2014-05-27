@@ -78,7 +78,7 @@ class RunBehatLaravelCommand extends Command {
         }
         
 
-        $input[] = $profile_config['paths']['features'].'/features/'.$this->input->getArgument('feature');
+        $input[] = $profile_config['paths']['features'].'/'.$this->input->getArgument('feature');
 
         // Running with output color
         $app = new \Behat\Behat\Console\BehatApplication('DEV');

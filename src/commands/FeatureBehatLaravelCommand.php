@@ -64,7 +64,7 @@ class FeatureBehatLaravelCommand extends Command {
         }
         
         $message = "The feature $feature will be created".
-        " in ".$profile_config['paths']['features']."/features/".$feature. "directory";
+        " in ".$profile_config['paths']['features'] / $feature. "directory";
         
         $this->comment( $message );
         $this->line('');
