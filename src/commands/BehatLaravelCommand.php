@@ -49,17 +49,38 @@ class BehatLaravelCommand extends Command {
 
         $this->question("Welcome to Laravel-Behat \n");
 
+        $input = array();
+        $input[] = '';
+        
+        $options = array('test_path');
+        
+        foreach ($options as $option) {
+            if ( ($format = $this->input->getOption($option) ) ) {
+                $input[$option] = $format;
+            }
+        }
         $this->comment("The following directories will be created: \n");
 
-        $this->info(" app/tests/acceptance/features \n");
-        $this->info(" app/tests/acceptance/contexts \n");
-
+        if(!empty($input) && isset($input['test_path'])){
+        $this->info($input['test_path']." /features \n");
+        $this->info($input['test_path']." /contexts \n");
+        }else{
+            $this->info(" app/tests/acceptance/features \n");
+            $this->info(" app/tests/acceptance/contexts \n");
+        }
         $this->comment("See the documentation for more information.");
 
         $file_builder = new FileBuilder();
 
-        $file_builder->makeStructure();
+        $file_builder->makeStructure($input);
 
         $this->line('');
+    }
+    
+    protected function getOptions()
+    {
+        return array(
+            array('test_path', NULL, InputOption::VALUE_OPTIONAL, 'Specify a test path to install behat'),
+        );
     }
 }
