@@ -28,13 +28,20 @@ class RunBehatLaravelCommand extends Command {
     protected $app;
 
     /**
+     * Config from behat.yml
+     * @var array
+     */
+    protected $config;
+    
+    /**
      * Create a new BehatLaravel command instance.
      *
      * @param  GuilhermeGuitte\BehatLaravel  $behat
      * @return void
      */
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
         parent::__construct();
     }
 

@@ -1,6 +1,7 @@
 <?php namespace GuilhermeGuitte\BehatLaravel;
 
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Yaml\Yaml;
 
 class BehatLaravelServiceProvider extends ServiceProvider {
 
@@ -18,6 +19,8 @@ class BehatLaravelServiceProvider extends ServiceProvider {
      */
     public function register()
     {
+        
+       
         $this->app['command.behat.install'] = $this->app->share(function($app)
         {
             return new BehatLaravelCommand();
@@ -27,21 +30,24 @@ class BehatLaravelServiceProvider extends ServiceProvider {
 
         $this->app['command.behat.run'] = $this->app->share(function($app)
         {
-            return new RunBehatLaravelCommand();
+            $config = Yaml::parse('app/../behat.yml');
+            return new RunBehatLaravelCommand($config);
         });
 
         $this->commands('command.behat.run');
 
         $this->app['command.behat.feature'] = $this->app->share(function($app)
         {
-            return new FeatureBehatLaravelCommand();
+            $config = Yaml::parse('app/../behat.yml');
+            return new FeatureBehatLaravelCommand($config);
         });
 
         $this->commands('command.behat.feature');
 
         $this->app['command.behat.generate_doc'] = $this->app->share(function($app)
         {
-            return new DocumentationCommand();
+            $config = Yaml::parse('app/../behat.yml');
+            return new DocumentationCommand($config);
         });
 
         $this->commands('command.behat.generate_doc');

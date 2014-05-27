@@ -28,13 +28,20 @@ class FeatureBehatLaravelCommand extends Command {
     protected $app;
 
     /**
+     * Config from behat.yml
+     * @var array
+     */
+    protected $config;
+    
+    /**
      * Create a new BehatLaravel command instance.
      *
      * @param  GuilhermeGuitte\BehatLaravel  $behat
      * @return void
      */
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
         parent::__construct();
     }
 
@@ -45,11 +52,20 @@ class FeatureBehatLaravelCommand extends Command {
      */
     public function fire()
     {
+        
         $feature = $this->option('name');
-
+        
+        $profile = $this->option('profile');
+        
+        if(!empty($profile)){
+            $profile_config = $this->loadConfig($profile);
+        }else{
+            $profile_config = $this->loadConfig('default');
+        }
+        
         $message = "The feature $feature will be created".
-        " in app/tests/acceptance/features/$feature directory";
-
+        " in ".$profile_config['paths']['features']."/features/".$feature. "directory";
+        
         $this->comment( $message );
         $this->line('');
 
@@ -60,7 +76,7 @@ class FeatureBehatLaravelCommand extends Command {
             $this->info( "Creating feature..." );
 
             $file_builder = new FeatureBuilder($feature);
-            $file_builder->makeFeature();
+            $file_builder->makeFeature($profile_config['paths']['features']);
 
             $this->info( "Feature successfully created!" );
             $this->line('');
@@ -77,7 +93,22 @@ class FeatureBehatLaravelCommand extends Command {
         $app = app();
 
         return array(
-            array('name', null, InputOption::VALUE_REQUIRED, "Feature's name")
+            array('name', null, InputOption::VALUE_REQUIRED, "Feature's name"),
+            array('profile', 'p', InputOption::VALUE_OPTIONAL, 'Specify a profile from behat.yml'),
         );
+    }
+    
+    /**
+     * Load the profile specific config
+     * 
+     * @param string $profile
+     * @return array|NULL
+     */
+    protected function loadConfig($profile){
+        
+        if(!empty($this->config)){
+            return (isset($this->config[$profile]))? $this->config[$profile] : null;
+        }
+        return null;
     }
 }
