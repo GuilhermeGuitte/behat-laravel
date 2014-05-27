@@ -10,7 +10,7 @@ class FileBuilder extends Builder
      */
     public function makeStructure($options = null)
     {
-        if ($options['test_path']) {
+        if (null!== $options && isset($options['test_path'])) {
             $this->testPath = $options['test_path'];
         }
         $this->createFolders();
