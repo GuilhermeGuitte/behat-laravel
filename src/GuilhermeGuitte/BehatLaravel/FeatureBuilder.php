@@ -11,37 +11,36 @@ class FeatureBuilder extends Builder
     }
 
     /**
-     * Create the folders and create the templates
+     * @param array $paths
      *
-     * @return null
+     * @return void
      */
-    public function makeFeature()
+    public function makeFeature(array $paths)
     {
-        $this->createFeatureFolder();
-        $this->createFeatureFile();
-        $this->createContextFile();
+        $this->createFeatureFile($this->createFeatureFolder($paths['features']));
+        $this->createContextFile($paths['bootstrap']);
     }
 
     /**
-     * Create the Features folder at app/tests
+     * @param $featurePath path to the features folder to create a new feature folder
      *
-     * @return null
+     * @return $path
      */
-    protected function createFeatureFolder()
+    protected function createFeatureFolder($featurePath)
     {
-        $path = $this->getFeaturePath() . "/" . $this->ruby_case($this->feature);
+        $path = $featurePath . "/" . $this->ruby_case($this->feature);
         $this->createFolder($path);
+        return $path;
     }
 
     /**
-     * Create the features files
+     * @param $featurePath path to the features folder to create a new feature file
      *
-     * @return null
+     * @return void
      */
-    protected function createFeatureFile()
+    protected function createFeatureFile($featurePath)
     {
-        $path = $this->getFeaturePath() .
-                "/" . $this->ruby_case($this->feature) .
+        $path = $featurePath .
                 "/" . $this->ruby_case($this->feature) . '.feature';
 
         $template = $this->getTemplate('feature_structure');
@@ -56,9 +55,9 @@ class FeatureBuilder extends Builder
      *
      * @return null
      */
-    protected function createContextFile()
+    protected function createContextFile($bootPath)
     {
-        $path = $this->getContextPath() . '/' . $this->feature . "Context.php";
+        $path = $bootPath . '/' . $this->feature . "Context.php";
 
         $template = $this->getTemplate('structure');
 

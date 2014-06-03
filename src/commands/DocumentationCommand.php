@@ -28,13 +28,20 @@ class DocumentationCommand extends Command {
     protected $app;
 
     /**
+     * Config from behat.yml
+     * @var array
+     */
+    protected $config;
+    
+    /**
      * Create a new BehatLaravel command instance.
      *
      * @param  GuilhermeGuitte\BehatLaravel  $behat
      * @return void
      */
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
         parent::__construct();
     }
 
@@ -54,10 +61,19 @@ class DocumentationCommand extends Command {
         if($this->input->getOption('out')) {
             $path = $this->input->getOption('out');
         }
-
-        $input[] = 'app/tests/acceptance';
+        
+        $profile = $this->option('profile');
+        if(!empty($profile)){
+            $profile_config = $this->loadConfig($profile);
+        }else{
+            $profile = 'default';
+            $profile_config = $this->loadConfig($profile);
+        }
+        
+        $input[] = realpath($profile_config['paths']['features'].'/../');
         $input[] = '--format=html';
         $input[] = '--out=' . $path;
+        $input[] = '--profile=' . $profile;
 
         $this->comment("Creating doc...");
 
@@ -71,6 +87,21 @@ class DocumentationCommand extends Command {
     {
         return array(
             array('out', 'o', InputOption::VALUE_OPTIONAL, 'Choose where file path should be created.'),
+            array('profile', 'p', InputOption::VALUE_REQUIRED, 'Specify a profile from behat.yml'),
         );
+    }
+    
+    /**
+     * Load the profile specific config
+     *
+     * @param string $profile
+     * @return array|NULL
+     */
+    protected function loadConfig($profile){
+    
+        if(!empty($this->config)){
+            return (isset($this->config[$profile]))? $this->config[$profile] : null;
+        }
+        return null;
     }
 }

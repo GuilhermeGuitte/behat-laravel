@@ -28,13 +28,20 @@ class RunBehatLaravelCommand extends Command {
     protected $app;
 
     /**
+     * Config from behat.yml
+     * @var array
+     */
+    protected $config;
+    
+    /**
      * Create a new BehatLaravel command instance.
      *
      * @param  GuilhermeGuitte\BehatLaravel  $behat
      * @return void
      */
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
         parent::__construct();
     }
 
@@ -54,15 +61,24 @@ class RunBehatLaravelCommand extends Command {
         $input = array();
         $input[] = '';
 
-        $options = array('format', 'no-snippets','tags', 'out');
+        $options = array('format', 'no-snippets','tags', 'out','profile');
 
         foreach ($options as $option) {
             if ( ($format = $this->input->getOption($option) ) ) {
                 $input[] = "--$option=".$format;
             }
         }
+        
+        $profile = $this->option('profile');
+        
+        if(!empty($profile)){
+            $profile_config = $this->loadConfig($profile);
+        }else{
+            $profile_config = $this->loadConfig('default');
+        }
+        
 
-        $input[] = 'app/tests/acceptance/features/'.$this->input->getArgument('feature');
+        $input[] = $profile_config['paths']['features'].'/'.$this->input->getArgument('feature');
 
         // Running with output color
         $app = new \Behat\Behat\Console\BehatApplication('DEV');
@@ -92,5 +108,19 @@ class RunBehatLaravelCommand extends Command {
             array('profile', 'p', InputOption::VALUE_REQUIRED, 'Specify a profile from behat.yml'),
             array('out', 'o', InputOption::VALUE_REQUIRED, 'Choose a formatter from <caption>pretty</caption> (default), progress, html, junit, failed, snippets.'),
         );
+    }
+    
+    /**
+     * Load the profile specific config
+     *
+     * @param string $profile
+     * @return array|NULL
+     */
+    protected function loadConfig($profile){
+    
+        if(!empty($this->config)){
+            return (isset($this->config[$profile]))? $this->config[$profile] : null;
+        }
+        return null;
     }
 }

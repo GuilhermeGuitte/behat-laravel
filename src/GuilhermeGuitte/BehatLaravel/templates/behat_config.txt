@@ -9,6 +9,6 @@ default:
                 output_path:            null
                 multiline_arguments:    true
     paths:
-        features: {testPath}/acceptance
+        features: {testPath}/acceptance/features
         bootstrap: {testPath}/acceptance/contexts
 
