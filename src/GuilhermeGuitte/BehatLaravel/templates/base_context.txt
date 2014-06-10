@@ -9,8 +9,8 @@ use Behat\Gherkin\Node\PyStringNode,
 use Zizaco\TestCases\ControllerTestCase,
     Zizaco\TestCases\IntegrationTestCase;
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
+require_once 'vendor/autoload.php';
+require_once 'vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
 
 class BaseContext extends BehatContext
 {
@@ -32,7 +32,7 @@ class BaseContext extends BehatContext
     }
 
     /**
-     * Adding ability to run assertions at fron_end test
+     * Adding ability to run assertions at front_end test
      * @return  IntegrationTestCase object
      */
     public function integrationCase()
