@@ -14,7 +14,7 @@
         "behat/behat": "3.0.*",
         "illuminate/support": "*",
         "alexandresalome/php-selenium": "1.0.1",
-        "zizaco/testcases-laravel": "dev-master",
+        "zizaco/testcases-laravel": "1.0.*",
         "behat/mink-extension": "2.*"
     },
     "require-dev": {
@@ -28,5 +28,5 @@
             "GuilhermeGuitte\\BehatLaravel": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
