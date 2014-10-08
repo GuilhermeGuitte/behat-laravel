@@ -115,6 +115,12 @@ $ php artisan behat:run name_of_feature/name_of_feature.feature
 $ php artisan behat:run name_of_feature/separated_scenarios.feature
 ```
 
+If you have large feature files and you only want run a specific senario use
+
+```
+$ php artisan behat:run --name="name of feature"
+```
+
 Laravel behat currently supports the following command line options from behat:
 
 ```
@@ -129,6 +135,8 @@ Laravel behat currently supports the following command line options from behat:
 
  --no-snippets        Do not print out snippets
  --profile (-p)       Specify config profile to use.
+ --name               Only execute the feature elements which match
+                      part of the given name or regex.
 ```
 
 

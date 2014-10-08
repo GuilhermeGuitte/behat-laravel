@@ -61,7 +61,7 @@ class RunBehatLaravelCommand extends Command {
         $input = array();
         $input[] = '';
 
-        $options = array('format', 'no-snippets','tags', 'out','profile');
+        $options = array('format', 'no-snippets','tags', 'out','profile', 'name');
 
         foreach ($options as $option) {
             if ( ($format = $this->input->getOption($option) ) ) {
@@ -107,6 +107,7 @@ class RunBehatLaravelCommand extends Command {
             array('no-snippets', NULL, InputOption::VALUE_NONE, 'Don\'t print snippets for unmatched steps'),
             array('profile', 'p', InputOption::VALUE_REQUIRED, 'Specify a profile from behat.yml'),
             array('out', 'o', InputOption::VALUE_REQUIRED, 'Choose a formatter from <caption>pretty</caption> (default), progress, html, junit, failed, snippets.'),
+            array('name', NULL, InputOption::VALUE_REQUIRED, 'Only execute the feature elements which match part of the given name or regex.'),
         );
     }
     
