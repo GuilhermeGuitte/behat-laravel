@@ -69,7 +69,7 @@ class RunBehatLaravelCommand extends Command {
             }
         }
         
-        $switches = array('stop-on-failure');
+        $switches = array('stop-on-failure', 'strict');
         foreach($switches as $switch)
         {
             if($this->input->getOption($switch))
@@ -117,7 +117,8 @@ class RunBehatLaravelCommand extends Command {
             array('profile', 'p', InputOption::VALUE_REQUIRED, 'Specify a profile from behat.yml'),
             array('out', 'o', InputOption::VALUE_REQUIRED, 'Choose a formatter from <caption>pretty</caption> (default), progress, html, junit, failed, snippets.'),
             array('name', NULL, InputOption::VALUE_REQUIRED, 'Only execute the feature elements which match part of the given name or regex.'),
-            array('stop-on-failure', NULL, InputOption::VALUE_NONE, 'Runs tests in the specified folder or file only.')
+            array('stop-on-failure', NULL, InputOption::VALUE_NONE, 'Runs tests in the specified folder or file only.'),
+            array('strict', NULL, InputOption::VALUE_NONE, 'Fail if there are any undefined or pending steps.')
         );
     }
     
