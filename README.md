@@ -2,13 +2,13 @@
 
 [![ProjectStatus](http://stillmaintained.com/GuilhermeGuitte/behat-laravel.png)](http://stillmaintained.com/GuilhermeGuitte/behat-laravel)
 
-Behat-Laravel is a solution test your application using the BDD methodology.
+Behat-Laravel is a solution to test your application using the BDD methodology.
 
 ## Features:
 
 *Current:*
 
-* Create the folder structure to for receiving the Acceptance tests.
+* Create the folder structure to receive the Acceptance tests.
 * Run the acceptance test.
 * Ingration with [Zizaco/TestCases-Laravel](https://github.com/Zizaco/testcases-laravel), that provide the useful methods test your application.
 
@@ -48,13 +48,13 @@ http://docs.seleniumhq.org/download/
 
 Commands
 ----------------
-Now generate the Behat's structure folder using the follow artisan's command:
+Now generate Behat's structure folder using the follow artisan's command:
 
 ```
 $ php artisan behat:install
 ```
 
-You can pass the test path if you not using the ```app/tests``` which folder`s test.
+You can pass the test path if you are not using the ```app/tests``` folder.
 
 ```
 $ php artisan behat:install --test_path==your/test/path
@@ -62,7 +62,7 @@ $ php artisan behat:install --test_path==your/test/path
 
 Generating Documentation
 -----------------------
-You can create a document in html just run:
+To create a document in html just run:
 
 ```
 $ php artisan behat:html # will create a file at application's root
@@ -83,9 +83,9 @@ http://docs.behat.org/
 Adding Contexts
 ---------------
 
-When you create a ```context```at folder ```tests\acceptance\contexts``` this files
-will be included at ```FeatureContext``` preventing the specification of files
-that will used to tests.
+When you create a ```context``` in the folder ```tests\acceptance\contexts``` these files
+will be included by ```FeatureContext``` preventing the specification of files
+that will be used by the tests.
 
 ```
 $ php artisan behat:feature --name=NameOfFeature
@@ -115,13 +115,13 @@ $ php artisan behat:run name_of_feature/name_of_feature.feature
 $ php artisan behat:run name_of_feature/separated_scenarios.feature
 ```
 
-If you have large feature files and you only want run a specific senario use
+If you have large feature files and you only want to run a specific senario use
 
 ```
 $ php artisan behat:run --name="name of feature"
 ```
 
-Laravel behat currently supports the following command line options from behat:
+Laravel behat currently supports the following behat command line options:
 
 ```
  --format (-f)        How to format features. pretty is default.
@@ -142,4 +142,4 @@ Laravel behat currently supports the following command line options from behat:
 
 License
 -------
-Behat-Laravel is free software distributed under the terms of the MIT license
+Behat-Laravel is free software distributed under the terms of the MIT license.
